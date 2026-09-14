@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Python FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_PROVIDER=gemini
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=sqlite+aiosqlite:///./pentest.db
+      - SANDBOX_MODE=docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./demo-target:/app/demo-target:ro
+    depends_on:
+      - demo-target
+
+  # React Frontend Dashboard
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+
+  # Safe Authorized Vulnerable Demo Target
+  demo-target:
+    build:
+      context: ./demo-target
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"

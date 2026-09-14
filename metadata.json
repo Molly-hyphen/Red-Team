@@ -1,0 +1,6 @@
+{
+  "name": "Red Team",
+  "description": "Autonomous AI application security & red teaming platform featuring multi-agent orchestration, dynamic sub-agents, real security tools, strict scope enforcement, automated finding validation, and live streaming dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
