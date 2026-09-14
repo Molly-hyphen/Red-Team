@@ -1,0 +1,12 @@
+{
+  "environment": "development",
+  "database": {
+    "url": "sqlite:///demo.db",
+    "admin_password": "SuperSecretAdminPassword123!"
+  },
+  "jwt_secret": "insecure_dev_jwt_secret_key_9999",
+  "aws_s3": {
+    "api_key": "AKIAIOSFODNN7EXAMPLE",
+    "secret_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+  }
+}
